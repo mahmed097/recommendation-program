@@ -9,6 +9,7 @@ public class Start {
 	private int choice;
 	Scanner scan = new Scanner(System.in);
 	Admin admin = new Admin();
+	RegularUser regularUser = new RegularUser();
 
 	public void StartingMenu() {
 
@@ -25,7 +26,7 @@ public class Start {
 				admin.AdminMenu();
 				break;
 			case 2:
-				RegularUser.RegularUserMenu();
+				regularUser.RegularUserMenu();
 				break;
 			default:
 				System.out.println("Please Input Either 1 or 2. Choose Again: ");

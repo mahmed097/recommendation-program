@@ -17,7 +17,7 @@ public class Print {
 				+ "**************************************************\n"
 				+ "                  Select Option:                   \n" + "\n"
 				+ "|  1. | Suggest a Movie or T.V Show\n" + "|  2. | Choose Random Movie or T.V Show\n"
-				+ "|  3. | View Watchlist\n");
+				+ "|  3. | View Watchlist\n" + "|  4. | Delete From Watchlist\n");
 	}
 
 	public static void StartingMenu() {
@@ -29,15 +29,29 @@ public class Print {
 				+ "|  2. | Regular User\n");
 	}
 
-	public static void PrintList() {
-		System.out.println(
-				"**************************************************************************************************************************\n"
-						+ "*                                              Movie and TV Show List                                                    *\n"
-						+ "**************************************************************************************************************************\n");
+	public static void PrintList(String typeOfFile) {
+		if (typeOfFile.equals("WatchList")) {
+			System.out.println(
+					"**************************************************************************************************************************\n"
+							+ "*                                                      " + typeOfFile
+							+ "                                                         *\n"
+							+ "**************************************************************************************************************************\n");
+		} else {
+			System.out.println(
+					"**************************************************************************************************************************\n"
+							+ "*                                                 " + typeOfFile
+							+ "                                                 *\n"
+							+ "**************************************************************************************************************************\n");
+		}
 		/* Line format to have an x amount of characters wide */
 		System.out.printf("%-25s | %-25s | %-25s | %-25s | %-25s%n", "Title", "Genre", "Director", "Year", "Rating");
 		System.out.println("\n");
 
+	}
+
+	public static void printDetails(String title, String genre, String director, int year, double rating) {
+		System.out.println("\nTitle: " + title + " Genre: " + genre + " Director: " + director + " Year: " + year
+				+ " Rating: " + rating);
 	}
 
 }

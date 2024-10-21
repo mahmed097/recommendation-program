@@ -10,11 +10,11 @@ public class ViewMovieAndTVShowList {
 	static File parentDir = new File("./src/main/java"); // Get the parent directory
 	static Scanner scan;
 
-	public static void showMovieAndTVShowList() {
-		Print.PrintList();
+	public static void showMovieAndTVShowList(String fileName, String typeOfFile) {
+		Print.PrintList(typeOfFile);
 
 		try {
-			scan = new Scanner(new File(parentDir, "/movies_and_tv_shows.txt"));
+			scan = new Scanner(new File(parentDir, fileName));
 
 			scan.useDelimiter("[,\n]"); // used to specify the pattern that separates the words (normally a whitespace)
 

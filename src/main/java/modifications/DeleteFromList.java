@@ -12,12 +12,12 @@ public class DeleteFromList {
 	static Scanner scan;
 	static Boolean titleDoesExists = false;
 
-	public static void deleteMovieOrTVShow(String Key, boolean justUpdating) {
+	public static void deleteMovieOrTVShow(String Key, boolean justUpdating, String fileName) {
 
 		// delete to newfile and rename
 
 		String tempFile = "temp.txt";
-		File oldFile = new File(parentDir, "/movies_and_tv_shows.txt");
+		File oldFile = new File(parentDir, fileName);
 		File newFile = new File(tempFile);
 
 		String title = "";
@@ -31,7 +31,7 @@ public class DeleteFromList {
 				PrintWriter pw = new PrintWriter(bw);) { // a try catch with resources which closes FileWriter,
 															// BufferWriter, PrintWriter automatically
 
-			scan = new Scanner(new File(parentDir, "/movies_and_tv_shows.txt"));
+			scan = new Scanner(new File(parentDir, fileName));
 			scan.useDelimiter("[,\n]");
 
 			while (scan.hasNext()) {
@@ -48,14 +48,12 @@ public class DeleteFromList {
 				}
 			}
 
-			scan.close();
-
 			if (oldFile.length() == 0 || !titleDoesExists) {
 				System.out.println("Title Doesn't Exist In The List");
 				newFile.delete();
 			} else {
 				oldFile.delete();
-				File dump = new File(parentDir, "/movies_and_tv_shows.txt");
+				File dump = new File(parentDir, fileName);
 				newFile.renameTo(dump);
 				if (!justUpdating) {
 					System.out.println("Title Has Been Deleted!");
@@ -64,6 +62,8 @@ public class DeleteFromList {
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			scan.close();
 		}
 
 	}

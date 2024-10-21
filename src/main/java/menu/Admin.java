@@ -29,12 +29,12 @@ public class Admin {
 
 			switch (choice) {
 			case 1:
-				addList.addTitleToList(false);
+				addList.addTitleToList(false, "movies_and_tv_shows.txt");
 				break;
 			case 2:
 				System.out.println("What Title Do You Want To Delete From List: ");
 				deleted = scan.nextLine();
-				DeleteFromList.deleteMovieOrTVShow(deleted, false);
+				DeleteFromList.deleteMovieOrTVShow(deleted, false, "/movies_and_tv_shows.txt");
 				break;
 			case 3:
 				System.out.println("What Title Do You Want To Update From List: ");
@@ -42,7 +42,7 @@ public class Admin {
 				updateList.updateMovieOrTVShow(updatedTitle);
 				break;
 			case 4:
-				ViewMovieAndTVShowList.showMovieAndTVShowList();
+				ViewMovieAndTVShowList.showMovieAndTVShowList("/movies_and_tv_shows.txt", "Movie and TV Show List");
 				break;
 			default:
 				System.out.println("Please Input Either 1, 2, 3 or 4. Choose Again: ");
