@@ -8,7 +8,8 @@ public class Print {
 				+ "**************************************************\n"
 				+ "                  Select Option:                   \n" + "\n"
 				+ "|  1. | Add To Movie & T.V Show List\n" + "|  2. | Delete From Movie & T.V Show List\n"
-				+ "|  3. | Update Movie & T.V Show List\n" + "|  4. | View List of Movie & T.V Show\n");
+				+ "|  3. | Update Movie & T.V Show List\n" + "|  4. | View List of Movie & T.V Show\n"
+				+ "|  5. | Go Back\n");
 	}
 
 	public static void RegularUserMenu() {
@@ -17,7 +18,7 @@ public class Print {
 				+ "**************************************************\n"
 				+ "                  Select Option:                   \n" + "\n"
 				+ "|  1. | Suggest a Movie or T.V Show\n" + "|  2. | Choose Random Movie or T.V Show\n"
-				+ "|  3. | View Watchlist\n" + "|  4. | Delete From Watchlist\n");
+				+ "|  3. | View Watchlist\n" + "|  4. | Delete From Watchlist\n" + "|  5. | Go Back\n");
 	}
 
 	public static void StartingMenu() {
@@ -26,7 +27,7 @@ public class Print {
 				+ "**************************************************\n"
 
 				+ "                   Choose Role:                   \n" + "\n" + "|  1. | Admin\n"
-				+ "|  2. | Regular User\n");
+				+ "|  2. | Regular User\n" + "|  3. | Exit Program\n");
 	}
 
 	public static void PrintList(String typeOfFile) {

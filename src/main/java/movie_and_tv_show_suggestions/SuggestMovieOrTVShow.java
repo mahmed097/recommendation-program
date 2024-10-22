@@ -78,14 +78,16 @@ public class SuggestMovieOrTVShow {
 
 			}
 
-			add.addToWatchList(suggestedList);
+			if (suggestedList.isEmpty()) {
+				System.out.println("No Title Matches That Parameters.");
+			} else {
+
+				add.addToWatchList(suggestedList);
+			}
+
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} finally {
-			scan.close();
-			scanner.close();
 		}
-
 	}
 
 }

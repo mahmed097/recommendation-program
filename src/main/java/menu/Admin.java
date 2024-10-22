@@ -16,16 +16,23 @@ public class Admin {
 	static Scanner scan = new Scanner(System.in);
 	AddToList addList = new AddToList(); // instance of AddToList Method
 	UpdateFromList updateList = new UpdateFromList();
+	Boolean running = true;
 
 	public void AdminMenu() {
 		/* Output Admin Menu */
-		Print.AdminMenu();
+		while (running) {
+			Print.AdminMenu();
 
-		choice = scan.nextInt();
-		scan.nextLine();
+			if (scan.hasNextInt()) { // were handling error here
+				choice = scan.nextInt();
+				scan.nextLine(); // Clear the newline
+			} else {
+				scan.nextLine(); // Clear invalid input
+				continue; // Ask for input again
+			}
 
-		/* Go to users choice or ask user to input again if invalid input */
-		while (true) {
+			/* Go to users choice or ask user to input again if invalid input */
+			// fix this so that it works in the second iterration
 
 			switch (choice) {
 			case 1:
@@ -44,13 +51,15 @@ public class Admin {
 			case 4:
 				ViewMovieAndTVShowList.showMovieAndTVShowList("/movies_and_tv_shows.txt", "Movie and TV Show List");
 				break;
+			case 5:
+				running = false;
+				break;
 			default:
-				System.out.println("Please Input Either 1, 2, 3 or 4. Choose Again: ");
-				choice = scan.nextInt();
-				continue;
+				System.out.println("Please Input Either 1, 2, 3, 4, 5, 6 or 7. Choose Again: \n");
 			}
-			break;
+
 		}
+		running = true; // Reset running to true for user to re-enter the admin menu later
 
 	}
 }

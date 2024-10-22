@@ -84,32 +84,24 @@ public class AddToList {
 
 	public void addToWatchList(Map<String, List<String>> suggestedList) {
 		boolean continueAdding = true;
-		Scanner scanner = new Scanner(System.in);
+
 		while (continueAdding) {
 
-			if (suggestedList.isEmpty()) {
-				System.out.println("No Title Matches That Parameters, Try again.");
-				/*
-				 * switch for the user to try again Fix this so that you handle when the list is
-				 * empty
-				 */
-
-			}
 			System.out.println("\nDo you want to add a title to the WatchList? (yes/no)");
-			String yesOrNo = scanner.next().toLowerCase();
+			String yesOrNo = scan.next().toLowerCase();
 
 			if (yesOrNo.equals("yes")) {
 				System.out.println("What title do you want to add to WatchList?: ");
-				String titleName = scanner.next();
-
+				scan.nextLine(); // read line Break (Fix this part)
+				String titleName = scan.nextLine();
 				if (suggestedList.get(titleName) == null) {
-					System.out.println("No Title Matches That Parameters, Try again.");
+					System.out.println("No Title Matches In The Filtered List, Try Again!");
 				} else {
 					/*
 					 * Fix null-pointer error
 					 * 
 					 * returns null-pointer if the title is not in the map, thus we need to fix it
-					 * to get an error
+					 * to get an error (This part is done here)
 					 */
 
 					String title = suggestedList.get(titleName).get(0);
@@ -120,6 +112,7 @@ public class AddToList {
 
 					addTitleToList(false, "watchlist.txt", title, genre, director, Integer.valueOf(year),
 							Double.valueOf(rating));
+					continueAdding = false;
 				}
 
 			} else if (yesOrNo.equals("no")) {
@@ -128,7 +121,7 @@ public class AddToList {
 				System.out.println("Please enter 'yes' or 'no'.");
 			}
 		}
-		scanner.close();
+
 	}
 
 	public void addToWatchList(String title, String genre, String director, int year, double rating) {
@@ -147,7 +140,7 @@ public class AddToList {
 				System.out.println("Please enter 'yes' or 'no'.");
 			}
 		}
-		scanner.close();
+
 	}
 
 }

@@ -16,18 +16,24 @@ public class RegularUser {
 	private String filter;
 	SuggestMovieOrTVShow suggestMovieOrTVShow = new SuggestMovieOrTVShow();
 	SuggestRandomMovieOrTVShow randomMovieOrTVShow = new SuggestRandomMovieOrTVShow();
+	Boolean running = true;
 
 	Scanner scan = new Scanner(System.in);
 
 	public void RegularUserMenu() {
-		/* Output Regular User Menu */
-		Print.RegularUserMenu();
+		while (running) {
+			/* Output Regular User Menu */
+			Print.RegularUserMenu();
 
-		choice = scan.nextInt();
-		scan.nextLine();
+			if (scan.hasNextInt()) { // Were handling error here
+				choice = scan.nextInt();
+				scan.nextLine(); // Clear the newline
+			} else {
+				scan.nextLine(); // Clear invalid input
+				continue; // Ask for input again
+			}
 
-		/* Go to users choice or ask user to input again if invalid input */
-		while (true) {
+			/* Go to users choice or ask user to input again if invalid input */
 
 			switch (choice) {
 			case 1:
@@ -46,13 +52,15 @@ public class RegularUser {
 				deleted = scan.nextLine();
 				DeleteFromList.deleteMovieOrTVShow(deleted, false, "/watchlist.txt");
 				break;
+			case 5:
+				running = false;
+				break;
 			default:
-				System.out.println("Please Input Either 1, 2, 3 or 4 Choose Again: ");
-				choice = scan.nextInt();
-				continue;
+				System.out.println("Please Input Either 1, 2, 3, 4, 5, 6 or 7. Choose Again: \n");
 			}
-			break;
+
 		}
+		running = true; // Reset running to true for user to re-enter the Regular user menu later
 
 	}
 
