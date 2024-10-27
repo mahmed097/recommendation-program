@@ -7,15 +7,15 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class DeleteFromList {
-	static File parentDir = new File("./src/main/java"); // Get the parent directory
-	static Scanner scan;
-	static Boolean titleDoesExists = false;
+import common_functionalities.ListHandler;
 
-	public static void deleteMovieOrTVShow(String Key, boolean justUpdating, String fileName) {
+public class DeleteFromList extends ListHandler {
 
-		// delete to newfile and rename
+	private static Scanner scan;
+	private static Boolean titleDoesExists = false;
 
+	public static boolean deleteMovieOrTVShow(String Key, boolean justUpdating, String fileName) {
+		titleDoesExists = false;
 		String tempFile = "temp.txt";
 		File oldFile = new File(parentDir, fileName);
 		File newFile = new File(tempFile);
@@ -32,7 +32,8 @@ public class DeleteFromList {
 															// BufferWriter, PrintWriter automatically
 
 			scan = new Scanner(new File(parentDir, fileName));
-			scan.useDelimiter("[,\n]");
+			scan.useDelimiter(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)|\n"); // Change the delimiter pattern to split for
+																		// every comma, brackets or line breaks
 
 			while (scan.hasNext()) {
 				title = scan.next();
@@ -41,20 +42,21 @@ public class DeleteFromList {
 				year = scan.next();
 				rating = scan.next();
 
-				if (!title.equals(Key)) {
+				if (!(title.substring(1, title.length() - 1)).equals(Key)) { // Writing all the titles that aren't the
+																				// title that the user wants to delete
+																				// in a new file
 					pw.println(title + "," + genre + "," + director + "," + year + "," + rating);
 				} else {
 					titleDoesExists = true;
 				}
 			}
 
-			if (oldFile.length() == 0 || !titleDoesExists) {
+			if (oldFile.length() == 0 || !titleDoesExists) { // If File is empty or title doesn't exist in list
 				System.out.println("Title Doesn't Exist In The List");
-				newFile.delete();
+				deleteFile(newFile);
 			} else {
-				oldFile.delete();
-				File dump = new File(parentDir, fileName);
-				newFile.renameTo(dump);
+				deleteFile(oldFile);
+				renameFile(oldFile, newFile);
 				if (!justUpdating) {
 					System.out.println("Title Has Been Deleted!");
 				}
@@ -65,7 +67,7 @@ public class DeleteFromList {
 		} finally {
 			scan.close();
 		}
-
+		return titleDoesExists;
 	}
 
 }

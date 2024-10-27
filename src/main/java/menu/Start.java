@@ -7,10 +7,10 @@ import print_statements.Print;
 public class Start {
 
 	private int choice;
-	Scanner scan = new Scanner(System.in);
+	private Scanner scan = new Scanner(System.in);
 	Admin admin = new Admin();
 	RegularUser regularUser = new RegularUser();
-	Boolean running = true;
+	private Boolean running = true;
 
 	public void StartingMenu() {
 		while (running) {
@@ -22,10 +22,9 @@ public class Start {
 				scan.nextLine(); // Clear the newline
 			} else {
 				scan.nextLine(); // Clear invalid input
+				System.out.println("Please Input Either 1, 2 or 3. Choose Again: \n");
 				continue; // Ask for input again
 			}
-
-			// fix state so you can use switch case statements again
 
 			/* Go to users choice or ask user to input again if invalid input */
 
@@ -45,6 +44,7 @@ public class Start {
 			}
 
 		}
+		running = true;
 		scan.close();
 	}
 

@@ -55,4 +55,8 @@ public class Print {
 				+ " Rating: " + rating);
 	}
 
+	public static void filterMessage(String filter) {
+		System.out.println("\nPlease input " + filter + " that you want to filter from: ");
+	}
+
 }

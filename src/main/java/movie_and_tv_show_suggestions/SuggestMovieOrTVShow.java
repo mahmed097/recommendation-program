@@ -8,70 +8,72 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
+import common_functionalities.ListHandler;
 import modifications.AddToList;
 import print_statements.Print;
 
-public class SuggestMovieOrTVShow {
-	File parentDir = new File("./src/main/java"); // Get the parent directory
+public class SuggestMovieOrTVShow extends ListHandler {
 	Scanner scan;
 	Scanner scanner;
 	AddToList add = new AddToList();
-//	RegularUser menu = new RegularUser();
 
-	public void suggestedMovieOrTVShow(String choice, int filter) {
+	public void suggestedMovieOrTVShow(String filter, int suggest) {
 
 		String title, genre, director;
 		int year;
 		double rating;
+		Map<String, List<String>> suggestedList;
 
 		try {
 			scan = new Scanner(new File(parentDir, "/movies_and_tv_shows.txt"));
-			scan.useDelimiter("[,\n]");
+			scan.useDelimiter(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)|\n"); // split by commas but exclude the
+			// commas in the quotes
 			scanner = new Scanner(System.in);
-			Map<String, List<String>> suggestedList = new HashMap<>();
+			suggestedList = new HashMap<>();
 
-			while (scan.hasNext()) {
+			while (scan.hasNext()) { // Scan file
 				title = scan.next();
 				genre = scan.next();
 				director = scan.next();
 				year = scan.nextInt();
 				rating = scan.nextDouble();
 
-				/* rating always updates for year and not the rating itself */
-				switch (filter) {
+				/* Removing Quotes from title, genre and director */
+				String cleanTitle = title.substring(1, title.length() - 1);
+				String cleanGenre = genre.substring(1, genre.length() - 1);
+				String cleanDirector = director.substring(1, director.length() - 1);
+
+				/* Filter based on user choice */
+				switch (suggest) {
 				case 1:
-					if (title.equalsIgnoreCase(choice)) {
-						Print.printDetails(title, genre, director, year, rating);
-						suggestedList.put(title,
-								Arrays.asList(title, genre, director, Integer.toString(year), Double.toString(rating)));
+					if (cleanTitle.equalsIgnoreCase(filter)) {
+
+						printTitleAndPutInSuggestedList(cleanTitle, cleanGenre, cleanDirector, year, rating,
+								suggestedList);
 					}
 					break;
 				case 2:
-					if (genre.equalsIgnoreCase(choice)) {
-						Print.printDetails(title, genre, director, year, rating);
-						suggestedList.put(title,
-								Arrays.asList(title, genre, director, Integer.toString(year), Double.toString(rating)));
+					if (cleanGenre.equalsIgnoreCase(filter)) {
+						printTitleAndPutInSuggestedList(cleanTitle, cleanGenre, cleanDirector, year, rating,
+								suggestedList);
 					}
 					break;
 				case 3:
-					if (director.equalsIgnoreCase(choice)) {
-						Print.printDetails(title, genre, director, year, rating);
-						suggestedList.put(title,
-								Arrays.asList(title, genre, director, Integer.toString(year), Double.toString(rating)));
+					if (cleanDirector.equalsIgnoreCase(filter)) {
+						printTitleAndPutInSuggestedList(cleanTitle, cleanGenre, cleanDirector, year, rating,
+								suggestedList);
 					}
 					break;
 				case 4:
-					if (year == Integer.valueOf(choice)) {
-						Print.printDetails(title, genre, director, year, rating);
-						suggestedList.put(title,
-								Arrays.asList(title, genre, director, Integer.toString(year), Double.toString(rating)));
+					if (year == Integer.valueOf(filter)) {
+						printTitleAndPutInSuggestedList(cleanTitle, cleanGenre, cleanDirector, year, rating,
+								suggestedList);
 					}
 					break;
 				case 5:
-					if (rating == Double.valueOf(choice)) {
-						Print.printDetails(title, genre, director, year, rating);
-						suggestedList.put(title,
-								Arrays.asList(title, genre, director, Integer.toString(year), Double.toString(rating)));
+					if (rating == Double.valueOf(filter)) {
+						printTitleAndPutInSuggestedList(cleanTitle, cleanGenre, cleanDirector, year, rating,
+								suggestedList);
 					}
 					break;
 				}
@@ -88,6 +90,16 @@ public class SuggestMovieOrTVShow {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	/* Print filtered details and put the title in suggested list */
+	private static void printTitleAndPutInSuggestedList(String title, String genre, String director, int year,
+			double rating, Map<String, List<String>> suggestedList) {
+		Print.printDetails(title, genre, director, year, rating);
+
+		suggestedList.put(title,
+				Arrays.asList(title, genre, director, Integer.toString(year), Double.toString(rating)));
+
 	}
 
 }

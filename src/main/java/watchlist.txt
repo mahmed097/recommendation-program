@@ -1,19 +1,5 @@
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Inception,Sci-Fi,Christopher Nolan,2010,8.8
-Blade Runner 2049,Science Fiction,Denis Villeneuve,2017,8.0
-Blade Runner 2049,Science Fiction,Denis Villeneuve,2017,8.0
-Blade Runner 2049,Science Fiction,Denis Villeneuve,2017,8.0
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Matrix,Sci-Fi,Lana Wachowski,1999,8.7
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
-Mad Max: Fury Road,Action,George Miller,2015,8.1
+"Breaking Bad","Crime","Vince Giligan",2013,9.5
+"Schindler's List","Biography","Steven Spielberg",1993,9.0
+"The Crown","Biography","Peter Morgan",2016,8.6
+"Fight Club","Drama","David Fincher",1999,8.8
+"Se7en","Crime","David Fincher",1995,8.6

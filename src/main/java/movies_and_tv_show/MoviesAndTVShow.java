@@ -1,20 +1,12 @@
 package movies_and_tv_show;
 
-public class MoviesAndTVShow  {
+public class MoviesAndTVShow {
 
 	private String title;
 	private String genre;
 	private String director;
 	private int year;
 	private double rating;
-
-//	public MoviesAndTVShows(String title, String genre, String director, int year, double rating) {
-//		this.title = title;
-//		this.genre = genre;
-//		this.director = director;
-//		this.year = year;
-//		this.rating = rating;
-//	}
 
 	public MoviesAndTVShow() {
 
