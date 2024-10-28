@@ -12,35 +12,39 @@ public class Start {
 	RegularUser regularUser = new RegularUser();
 	private Boolean running = true;
 
-	public void StartingMenu() {
-		while (running) {
-			/* Print Out Starting Menu */
-			Print.StartingMenu();
+	public void startingMenu() {
 
-			if (scan.hasNextInt()) { // were handling error here
+		while (running) {
+			// Print Out Login Menu
+			Print.startingMenu();
+
+			if (scan.hasNextInt()) {
 				choice = scan.nextInt();
-				scan.nextLine(); // Clear the newline
+				scan.nextLine();
 			} else {
 				scan.nextLine(); // Clear invalid input
-				System.out.println("Please Input Either 1, 2 or 3. Choose Again: \n");
+				System.out.println("Please input either 1, 2 or 3. Choose again: \n");
 				continue; // Ask for input again
 			}
 
-			/* Go to users choice or ask user to input again if invalid input */
+			// Go to users choice or ask user to input again if invalid input
 
 			switch (choice) {
 			case 1:
-				admin.AdminMenu();
+				// Go to admin menu
+				admin.adminMenu();
 				break;
 			case 2:
-				regularUser.RegularUserMenu();
+				// Go to regular user menu
+				regularUser.regularUserMenu();
 				break;
 			case 3:
+				// Exit program
 				running = false;
 				System.out.println("Exiting...");
 				break;
 			default:
-				System.out.println("Please Input Either 1, 2 or 3. Choose Again: \n");
+				System.out.println("Please input either 1, 2 or 3. Choose again: \n");
 			}
 
 		}

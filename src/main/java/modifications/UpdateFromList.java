@@ -6,9 +6,9 @@ public class UpdateFromList {
 	public void updateMovieOrTVShow(String title) {
 
 		if (DeleteFromList.deleteMovieOrTVShow(title, true, "/" + filePath)) { // First delete title from list
-			AddToList addList = new AddToList(); // instance of AddToList Method
+			AddToList addList = new AddToList();
 			addList.addTitleToList(true, filePath); // Add updated title to list
-			System.out.println("Title Has Been Updated!");
+			System.out.println("Title has been updated!");
 		}
 	}
 

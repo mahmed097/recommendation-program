@@ -3,13 +3,13 @@ package menu;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-import common_functionalities.ListHandler;
+import common_functionalities.ReadAFile;
 import modifications.DeleteFromList;
 import movie_and_tv_show_suggestions.SuggestMovieOrTVShow;
 import movie_and_tv_show_suggestions.SuggestRandomMovieOrTVShow;
 import print_statements.Print;
 
-public class RegularUser extends ListHandler {
+public class RegularUser extends ReadAFile {
 
 	private int choice;
 	private int suggest;
@@ -21,53 +21,57 @@ public class RegularUser extends ListHandler {
 
 	private Scanner scan = new Scanner(System.in);
 
-	public void RegularUserMenu() {
-		while (running) {
-			/* Output Regular User Menu */
-			Print.RegularUserMenu();
+	public void regularUserMenu() {
 
-			if (scan.hasNextInt()) { // Were handling error here
+		while (running) {
+			// Output regular user menu
+			Print.regularUserMenu();
+
+			if (scan.hasNextInt()) {
 				choice = scan.nextInt();
-				scan.nextLine(); // Clear the newline
+				scan.nextLine();
 			} else {
 				scan.nextLine(); // Clear invalid input
-				System.out.println("Please Input Either 1, 2, 3, 4, 5, 6 or 7. Choose Again: \n");
+				System.out.println("Please input either 1, 2, 3, 4, 5, 6 or 7. Choose again: \n");
 				continue; // Ask for input again
 			}
 
-			/* Go to users choice or ask user to input again if invalid input */
+			// Go to users choice or ask user to input again if invalid input
 
 			switch (choice) {
 			case 1:
+				// Suggest a title from users filter
 				handleSuggestion();
 				break;
 			case 2:
-				// System.out.println("What Title Do You Want To Delete From List: ");
+				// Suggest a random movie
 				randomMovieOrTVShow.randomMovieOrTVShow();
 				break;
 			case 3:
 				try {
+					// View watchlist
 					readFile("watchlist.txt", "WatchList");
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
+					System.out.println("File not found!");
 					e.printStackTrace();
 				}
 				break;
 			case 4:
-				System.out.println("What Title Do You Want To Delete From WatchList: ");
+				// Delete from watchlist
+				System.out.println("What title do you want to delete from watchList: ");
 				deleted = scan.nextLine();
 				DeleteFromList.deleteMovieOrTVShow(deleted, false, "/watchlist.txt");
 				break;
 			case 5:
+				// Go back to login menu
 				running = false;
 				break;
 			default:
-				System.out.println("Please Input Either 1, 2, 3, 4, 5, 6 or 7. Choose Again: \n");
+				System.out.println("Please input either 1, 2, 3, 4, 5, 6 or 7. Choose again: \n");
 			}
 
 		}
-		running = true; // Reset running to true for user to re-enter the Regular user menu later
-						// (handling state)
+		running = true; // Reset State for running to true
 
 	}
 
@@ -76,18 +80,18 @@ public class RegularUser extends ListHandler {
 		System.out.println("1.Ttile\n" + "2.Genre\n" + "3.Director\n" + "4.Year\n" + "5.Rating\n");
 
 		while (true) {
-			if (scan.hasNextInt()) { // Were handling error here
+			if (scan.hasNextInt()) {
 				suggest = scan.nextInt();
-				scan.nextLine(); // Clear the newline
+				scan.nextLine();
 
 				if (suggest >= 1 && suggest <= 5) {
 					break;
 				} else {
-					System.out.println("Please Input Either 1, 2, 3, 4 or 5. Choose Again: \n");
+					System.out.println("Please input either 1, 2, 3, 4 or 5. Choose again: \n");
 				}
 			} else {
 				scan.nextLine(); // Clear invalid input
-				System.out.println("Please Input Either 1, 2, 3, 4 or 5. Choose Again: \n");
+				System.out.println("Please input either 1, 2, 3, 4 or 5. Choose again: \n");
 
 			}
 		}
@@ -95,7 +99,7 @@ public class RegularUser extends ListHandler {
 		switch (suggest) {
 		case 1:
 			Print.filterMessage("title");
-			filter = scan.nextLine(); // handle input mismatch exception
+			filter = scan.nextLine();
 			break;
 		case 2:
 			Print.filterMessage("genre");

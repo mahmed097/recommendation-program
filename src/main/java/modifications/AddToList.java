@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import common_functionalities.ListHandler;
+import common_functionalities.WriteToFile;
 import movies_and_tv_show.MoviesAndTVShow;
 
-public class AddToList extends ListHandler {
+public class AddToList extends WriteToFile {
 
 	Scanner scan = new Scanner(System.in);
 	MoviesAndTVShow createMovieOrTVShow = new MoviesAndTVShow();
@@ -27,7 +27,7 @@ public class AddToList extends ListHandler {
 
 		createMovieOrTVShow.setRating(rating);
 
-		writeFile(createMovieOrTVShow, justUpdating, fileName); // Add movie to desired file
+		writeFile(createMovieOrTVShow, justUpdating, fileName); // Add title to desired file
 
 	}
 
@@ -35,7 +35,7 @@ public class AddToList extends ListHandler {
 
 		while (!isInputValid) {
 			try {
-				System.out.println("Please Input Title, Genre, Director, Year and Rating of Movie or T.V Show");
+				System.out.println("Please input title, genre, director, year and rating of Movie or T.V Show:");
 
 				System.out.println("Title: ");
 				createMovieOrTVShow.setTitle("\"" + scan.nextLine() + "\"");
@@ -54,12 +54,12 @@ public class AddToList extends ListHandler {
 				createMovieOrTVShow.setRating(scan.nextDouble());
 				scan.nextLine();
 
-				writeFile(createMovieOrTVShow, justUpdating, fileName); // Add movie to desired file
+				writeFile(createMovieOrTVShow, justUpdating, fileName); // Add title to desired file
 				isInputValid = true;
 			} catch (InputMismatchException e) {
 				System.out.println(
 						"Invalid input. Please enter a string for Title, Genre, Director, a Integer for Year and a Double value for Rating!");
-				scan.nextLine(); // Eats the linebreak
+				scan.nextLine();
 			}
 		}
 
@@ -76,13 +76,13 @@ public class AddToList extends ListHandler {
 
 			if (yesOrNo.equals("yes")) {
 				System.out.println("What title do you want to add to WatchList?: ");
-				scan.nextLine();// Clear the floating newline
+				scan.nextLine();
 				String titleName = scan.nextLine();
 				if (suggestedList.get(titleName) == null) {
-					System.out.println("No Title Matches In The Filtered List, Try Again!");
+					System.out.println("No title matches in the filtered list, try again!");
 				} else {
 
-					/* Get title from suggested list and put it into the watchlist file */
+					// Get title from suggestedList and put it into the watchlist file
 					String title = suggestedList.get(titleName).get(0);
 					String genre = suggestedList.get(titleName).get(1);
 					String director = suggestedList.get(titleName).get(2);

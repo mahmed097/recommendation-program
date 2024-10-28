@@ -6,8 +6,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		Start user = new Start(); // Start the program
-		user.StartingMenu();
+		Start user = new Start();
+		user.startingMenu(); // Start the program
 
 	}
 

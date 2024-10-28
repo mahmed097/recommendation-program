@@ -2,17 +2,17 @@ package print_statements;
 
 public class Print {
 
-	public static void AdminMenu() {
+	public static void adminMenu() {
 		System.out.println("**************************************************\n"
 				+ "*                     Admin                      *\n"
 				+ "**************************************************\n"
 				+ "                  Select Option:                   \n" + "\n"
 				+ "|  1. | Add To Movie & T.V Show List\n" + "|  2. | Delete From Movie & T.V Show List\n"
-				+ "|  3. | Update Movie & T.V Show List\n" + "|  4. | View List of Movie & T.V Show\n"
+				+ "|  3. | Update Movie & T.V Show List\n" + "|  4. | View List of Movies & T.V Shows\n"
 				+ "|  5. | Go Back\n");
 	}
 
-	public static void RegularUserMenu() {
+	public static void regularUserMenu() {
 		System.out.println("**************************************************\n"
 				+ "*                  Regular User                  *\n"
 				+ "**************************************************\n"
@@ -21,7 +21,7 @@ public class Print {
 				+ "|  3. | View Watchlist\n" + "|  4. | Delete From Watchlist\n" + "|  5. | Go Back\n");
 	}
 
-	public static void StartingMenu() {
+	public static void startingMenu() {
 		System.out.println("**************************************************\n"
 				+ "*                     Login                      *\n"
 				+ "**************************************************\n"
@@ -30,7 +30,7 @@ public class Print {
 				+ "|  2. | Regular User\n" + "|  3. | Exit Program\n");
 	}
 
-	public static void PrintList(String typeOfFile) {
+	public static void printList(String typeOfFile) {
 		if (typeOfFile.equals("WatchList")) {
 			System.out.println(
 					"**************************************************************************************************************************\n"
@@ -44,7 +44,7 @@ public class Print {
 							+ "                                                 *\n"
 							+ "**************************************************************************************************************************\n");
 		}
-		/* Line format to have an x amount of characters wide */
+		// Line format to have an x amount of characters wide
 		System.out.printf("%-25s | %-25s | %-25s | %-25s | %-25s%n", "Title", "Genre", "Director", "Year", "Rating");
 		System.out.println("\n");
 
